@@ -10,7 +10,7 @@ The React App provides a front-end to be able to perform the CRUD operations. It
 * Delete a person from the "database"
 * Update a person from the "database"
 
-The App offers some Links to be able to perform this operations, and some routing.
+The App offers some Links to be able to perform these operations, and some routing.
 The App will also offer a checkbox that is able to maintain its state after the app is refreshed.
 
 There is not alot of CSS involved. I know that presentation is important but I though (I hope I was not mistake) that due to the knowledge and time constrains, it will be better to deliver something that is functional, so my focus was on having an application that could achieve the goals of the stackeholders.
@@ -34,7 +34,7 @@ I tried to maintain a separation from the data / components / main as we will do
 ### Notes
 As I mention, this is my first time with react so you may find that there are some inconsistencies in the code. This is due to myself doing some experimentation through the code while I was coding. As an example I have
 
-`handleUserInput = (e) => {` and ` handleSubmit(event){`. I was playing with different ways to invoke this functions.
+`handleUserInput = (e) => {` and ` handleSubmit(event){`. I was playing with different ways to invoke these functions.
 
 Although I can't present automated tests for this part of the application (This is purely for the lack of time) I performed some manual test:
 * Check checkbox and refresh
@@ -57,7 +57,7 @@ The Go App serves as a server end-point serving data when the client hits the en
 * /app/people/all/{id} -> PUT
 They
 * Get all the people from the "database"
-* Get a specific personfrom the "database"
+* Get a specific person from the "database"
 * Post a new person to the "database"
 * Delete a new person from the "database"
 * Modify a person from the "database"
@@ -82,15 +82,19 @@ The structure of the App is as follows:
 |main.go
 
 The Routes folder contains the routes and the code that generates the endpoint
-The types provides the type for the person
+The types provide the type for the person
 The utilitydatabase "loads the hardcoded database" on memory. This will be where I will probably add all the functions mentioned before if we were working with a database
 
-Again, I know that this may not be the standars for go libraries (I actually found this article: https://github.com/golang-standards/project-layout) but due to my limitations I decided to present this layout knowing that improvement can be made
+Again, I know that this may not be the standars for go libraries (I found this article: https://github.com/golang-standards/project-layout) but due to my limitations I decided to present this layout knowing that improvement can be made
 
-This part of the application contains some unittest. I know that they are basic and I had to do something that would bring me shame if I were doing that with c++/gtest and that was, make the methods that I was testing Public. Again, because is my first contact with the testing framework, I don't know if that is how it has to be or if there is a better way to do it but at least the test are functional.
+This part of the application contains some unittest. I know that they are basic, and I had to do something that would bring me shame if I were doing that with c++/gtest and that was, make the methods that I was testing Public. Again, because is my first contact with the testing framework, I don't know if that is how it has to be or if there is a better way to do it but at least the test are functional.
 
 I also did some manual testing with Postman to be sure that I was hitting the endpoints properly
 
+They are a few assumptions for the go code. Again, because I'm not familiar with the paradigms of Go some assumptions could be wrong.
+I installed/used 2 libraries in order to implement my endpoint with go, this are    
+https://github.com/gorilla/mux -> For routing
+https://github.com/rs/cors -> To avoid CORS problems by connecting my client/server in my localhost
 
 ### Prerequisites
 
@@ -99,10 +103,16 @@ I organized the 2 apps in 2 different folders, client for the react_app and serv
 In the server folder you need to run
 `go run main.go`. That will start the server in the localhost:8000
 
-
 In the client app you need to run
 
 `npm install`
+`npm install react-router-dom`
 
-After all the dependencies are installed, run `npm run` . That will start the client in the localhost:3000
+After all the dependencies are installed, run `npm start`. That will start the client in the localhost:3000
 
+##Note
+
+The 2 applications have their own repositories here. They don't contain the latest version, but they can show what I was doing before unite them in a single
+respository
+react_app: https://github.com/Sigilita/react_app
+go_app: https://github.com/Sigilita/GoApp
