@@ -1,0 +1,5 @@
+- The API is created, and i think that performs CRUD as expected.
+- I don't know if the first point is as expected or not, the URL to get all the people for instance is http://localhost:8000/app/people/all vs the http://app/people in the exercice
+- Every time a person is added it creates the person in the "database" with the fields specified in point 2 (Validation in client and server side?)
+- The methods are added. I don't fully understand the "provide a method to sort by name or email" so I implemented the sort interface in the data_struct (And the sort can be performed by name or email but there is no such thing as a end point that returns the elements sorted by email and other sorter by name)
+- The interface needs to be created (point 4)
