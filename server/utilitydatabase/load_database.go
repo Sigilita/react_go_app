@@ -11,13 +11,13 @@ func LoadDatabase() []types.Person {
 
 	// Harcoded testing values. In a real implementation this should query the datadabase.
 	// For a production environment things as locks, accessing the datase while another application is accesing...etc should be considered
-	person := types.Person{ID: "1", Name: "John", Age: "35", Balance: "10.1", Email: "john.doe@gmail.com", Address: "JonhLand"}
+	person := types.Person{ID: "1", Name: "John", Age: "35", Balance: "10.1", Email: "first.doe@gmail.com", Address: "JonhLand"}
 	people = append(people, person)
 
-	person = types.Person{ID: "2", Name: "Jane", Age: "30", Balance: "10.2", Email: "jane@doe.com", Address: "JaneLand"}
+	person = types.Person{ID: "2", Name: "Jane", Age: "30", Balance: "10.2", Email: "second@doe.com", Address: "JaneLand"}
 	people = append(people, person)
 
-	person = types.Person{ID: "3", Name: "Jule", Age: "34", Balance: "10.3", Email: "jule.doe@gmail.com", Address: "JuleLand"}
+	person = types.Person{ID: "3", Name: "Jule", Age: "34", Balance: "10.3", Email: "third.doe@gmail.com", Address: "JuleLand"}
 	people = append(people, person)
 
 	return people

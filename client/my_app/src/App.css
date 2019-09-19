@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -9,14 +10,22 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background-color: #dae3f5;
+  height: 10vh;
+  width: 100vw;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.App-body {
+  background-color: #dae3f5;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .App-link {
@@ -34,7 +43,7 @@
 
 .person{
   font-size: 10pt;
-  color: blueviolet;
+  color: rgb(16, 101, 158);
 }
 .personPrint{
   font-size: 12pt;

@@ -25,7 +25,7 @@ func TestGetAllPeople(t *testing.T) {
 	// Check the response body is what we expect.
 
 	// The body is exactly as expected but still the equality fails.
-	expected := `[{"id":"2","name":"Jane","age":"30","balance":"10.2","email":"jane@doe.com","address":"JaneLand"},{"id":"1","name":"John","age":"35","balance":"10.1","email":"john.doe@gmail.com","address":"JonhLand"},{"id":"3","name":"Jule","age":"34","balance":"10.3","email":"jule.doe@gmail.com","address":"JuleLand"}]`
+	expected := `[{"id":"2","name":"Jane","age":"30","balance":"10.2","email":"second@doe.com","address":"JaneLand"},{"id":"1","name":"John","age":"35","balance":"10.1","email":"first.doe@gmail.com","address":"JonhLand"},{"id":"3","name":"Jule","age":"34","balance":"10.3","email":"third.doe@gmail.com","address":"JuleLand"}]`
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
@@ -99,5 +99,28 @@ func TestDeletePerson(t *testing.T) {
 	if rr.Body.String() != "" {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), "")
+	}
+}
+
+func TestGetSortPeople(t *testing.T) {
+	req, err := http.NewRequest("GET", "/app/people/sort", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.ReturnSortByEmail)
+	handler.ServeHTTP(rr, req)
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	// Check the response body is what we expect.
+
+	// The body is exactly as expected but still the equality fails.
+	expected := `[{"id":"1","name":"John","age":"35","balance":"10.1","email":"first.doe@gmail.com","address":"JonhLand"},{"id":"2","name":"Mary","age":"30","balance":"10.2","email":"jane@doe.com","address":"JaneLand"},{"id":"4","name":"Mary","age":"30","balance":"10.12","email":"mjane@doe.com","address":"JaneLand"},{"id":"3","name":"Jule","age":"34","balance":"10.3","email":"third.doe@gmail.com","address":"JuleLand"}]`
+	if rr.Body.String() != expected {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			rr.Body.String(), expected)
 	}
 }

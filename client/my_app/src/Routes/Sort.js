@@ -11,7 +11,7 @@ class Home extends React.Component {
       }
     
       callAPI(){
-        fetch("http://localhost:8000/app/people/all")
+        fetch("http://localhost:8000/app/people/sort")
         .then( response => response.json())
         .then(
             // handle the result
@@ -36,11 +36,11 @@ class Home extends React.Component {
     render() {
         return (
         <div>
+            <h3>Sorted by Email</h3>
           <div>
             <PeopleList peopleArray = {this.state.apiResponse}/>
           </div>
-        </div>
-        )
+        </div>)
     }
 }
 

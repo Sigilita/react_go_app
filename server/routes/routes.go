@@ -31,7 +31,9 @@ func HandleRequests() {
 
 	//GET
 	myRouter.HandleFunc("/app/people/all", ReturnAllpeople).Methods("GET")
+	myRouter.HandleFunc("/app/people/sort", ReturnSortByEmail).Methods("GET")
 	myRouter.HandleFunc("/app/people/{id}", ReturnPerson).Methods("GET")
+
 	//POST
 	myRouter.HandleFunc("/app/people", CreateNewPerson).Methods("POST")
 	//DELETE
@@ -121,6 +123,18 @@ func DeletePerson(responseWriter http.ResponseWriter, httpRequest *http.Request)
 }
 
 // ReturnAllpeople is public for testing purposes
+func ReturnSortByEmail(responseWriter http.ResponseWriter, httpRequest *http.Request) {
+	//Call to enableCors
+	fmt.Println("Return by Email")
+	enableCors(&responseWriter)
+
+	// There are 2 sort methods defined in the person_type file.
+	sort.Sort(types.ByEmail(people))
+	// Return the values recovered from the database.
+	//json.NewEncoder(responseWriter).Encode(people)
+	respondWithJSON(responseWriter, http.StatusOK, people)
+}
+
 func ReturnAllpeople(responseWriter http.ResponseWriter, httpRequest *http.Request) {
 	//Call to enableCors
 	fmt.Println("Return all")
@@ -174,6 +188,9 @@ func enableCors(responseWriter *http.ResponseWriter) {
 	(*responseWriter).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
+// Aux function to send a response. I found this better than my first approach
+// of using json.NewEncoder(responseWriter).Encode(people) because this could
+// be expanded to also send responses with error codes.
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	//encode payload to json
 	response, _ := json.Marshal(payload)
